@@ -1,6 +1,8 @@
-# Devpost submission draft — not submitted
+# Devpost submission
 
-The edited public story is in [devpost-story.md](devpost-story.md). The title, pitch, story, repository link, Alexa+ track, tool feedback, three screenshots and video link have been saved to Devpost draft 1189906. Final submission is still pending.
+Submitted to the Alexa+ track on September 20, 2026. Devpost confirmed "Project submitted!". Project page: https://devpost.com/software/planpatch
+
+The public story is in [devpost-story.md](devpost-story.md). The submission includes the title, pitch, story, repository link, Alexa+ track, tool feedback, three screenshots and video link. Submission ID: 1189906.
 
 Demo video: https://youtu.be/t9wYuDp0zuA — published publicly on September 20, 2026. It is an edited walkthrough of actual browser captures from the running local app, with English captions.
 
@@ -54,7 +56,5 @@ Alexa+ only. No Open Source or AWS Builder mini-challenge claim at this stage. T
 ## Public repository
 https://github.com/chowol0309/planpatch — published and verified public, MIT licensed.
 
-## Submission prerequisites still outstanding
-- Hackathon registration and project draft creation are complete. CAPTCHA was completed by the entrant.
-- Final accuracy review and action-time acceptance of the contest rules.
-- Entrant eligibility/conflict-of-interest declarations must be truthful; do not guess undisclosed facts.
+## Submission status
+Registration, entrant eligibility declarations, contest terms acceptance and final submission are complete. The entry can be edited until the hackathon deadline. Submission does not imply selection for a prize.
