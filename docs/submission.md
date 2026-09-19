@@ -1,6 +1,8 @@
 # Devpost submission draft — not submitted
 
-The edited public story is in [devpost-story.md](devpost-story.md). The title, pitch, story, repository link, Alexa+ track and tool feedback have been saved to Devpost draft 1189906. Final submission is still pending.
+The edited public story is in [devpost-story.md](devpost-story.md). The title, pitch, story, repository link, Alexa+ track, tool feedback, three screenshots and video link have been saved to Devpost draft 1189906. Final submission is still pending.
+
+Demo video: https://youtu.be/t9wYuDp0zuA — published publicly on September 20, 2026. It is an edited walkthrough of actual browser captures from the running local app, with English captions.
 
 ## Project name
 PlanPatch
@@ -54,6 +56,5 @@ https://github.com/chowol0309/planpatch — published and verified public, MIT l
 
 ## Submission prerequisites still outstanding
 - Hackathon registration and project draft creation are complete. CAPTCHA was completed by the entrant.
-- Public English demo video on YouTube or Vimeo. An 86-second local captured-state montage exists as a draft; it is not a live screen recording or a submission URL. Finish the actual interaction recording before publication.
-- Final accuracy review, then action-time acceptance of the contest rules.
+- Final accuracy review and action-time acceptance of the contest rules.
 - Entrant eligibility/conflict-of-interest declarations must be truthful; do not guess undisclosed facts.

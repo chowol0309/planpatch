@@ -6,6 +6,8 @@ Alex has to stay late at work. Someone still needs to pick up the kids, collect 
 
 ![PlanPatch](docs/overview.png)
 
+[Watch the demo](https://youtu.be/t9wYuDp0zuA) — a 98-second walkthrough of the running app.
+
 This is a small prototype for the Alexa+ track of the Amazon Developer Hackathon. It has a local web app and an MCP server; it hasn't been connected to Alexa+ yet.
 
 ## Run it
