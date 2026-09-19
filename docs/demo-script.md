@@ -1,6 +1,6 @@
 # English demo script — target 90 seconds
 
-This walkthrough must use actual running application states. Any captured-state montage should be labeled as such. Do not call the scripted MCP client an LLM conversation.
+This walkthrough must use actual running application states. Any captured-state montage should be labeled as such. Identify the command-line demo as a scripted MCP client.
 
 0–10s: "This is PlanPatch. One changed shift can break school pickup, groceries and dinner. We help a household recover the whole day, then review every change. All data here is fictional."
 

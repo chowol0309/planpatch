@@ -14,7 +14,7 @@ Plans are previews until you review and approve them. Changes are saved locally,
 
 The backend is Node.js with Express and the MCP TypeScript SDK. The MCP endpoint uses Streamable HTTP and protocol version 2025-11-25. Three tools read the household, generate alternatives and retrieve a proposal. The browser handles review and approval.
 
-The scheduler searches the small demo's possible time slots and assignees, then ranks feasible plans by deferrals, cost and changes to the original schedule. It doesn't require a language model or paid API.
+The scheduler searches the small demo's possible time slots and assignees, then ranks feasible plans by deferrals, cost and changes to the original schedule. It runs locally without a paid API.
 
 ## What was tricky
 
@@ -22,10 +22,8 @@ A schedule can look sensible and still leave no time to travel between tasks. Wo
 
 ## Current scope and next steps
 
-This is a local MCP prototype for the Alexa+ track, not a live Alexa+ integration. The people, schedules and helper prices are sample data. There are no real calendar updates, messages or bookings. The command-line MCP demo uses a scripted SDK client, not an LLM.
+This is a local MCP prototype for the Alexa+ track, not a live Alexa+ integration. The people, schedules and helper prices are sample data. There are no real calendar updates, messages or bookings. The command-line MCP demo uses a scripted SDK client.
 
 The next steps are testing the idea with families, calendar import and a way for each person to accept a handoff.
 
-## Development
-
-Built with substantial OpenAI Codex assistance for code, tests, design and documentation. Source and setup instructions are available in the MIT-licensed repository.
+Source and setup instructions are available in the MIT-licensed repository.

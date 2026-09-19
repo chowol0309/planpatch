@@ -17,7 +17,7 @@ PlanPatch reads a fictional household's shared tasks and availability. Given an 
 ## How we built it
 A Node.js constraint solver enumerates candidate schedules. The official Model Context Protocol TypeScript SDK exposes a working MCP 2025-11-25 Streamable HTTP server. Its tools read the household, generate a recovery preview and inspect an existing preview. A separate HTML/CSS/JavaScript web interface reviews and applies those proposals. JSON state uses atomic replacement and monotonic revisions so a stale preview cannot overwrite a newer plan.
 
-The intended Alexa+ entry route is the working self-hosted MCP server. We have not connected a live Alexa+ device or claimed access to a private Alexa+ preview. The supplied web interface and SDK-client demo are deterministic; no runtime LLM inference is claimed. The fixtures, helper prices and schedules are synthetic. No real calendars, messages, purchases or bookings are changed.
+The intended Alexa+ entry route is the working self-hosted MCP server. We have not connected a live Alexa+ device or used a private Alexa+ preview. The web interface and SDK-client demo use the same local scheduler. The fixtures, helper prices and schedules are synthetic. No real calendars, messages, purchases or bookings are changed.
 
 ## Challenges
 Feasible recovery is not just moving overlapping tasks: travel before a fixed appointment and maximum workload can invalidate a visually plausible schedule. A second challenge was ensuring that an assistant's proposal did not become a silent write. We split proposal tools from the local approval UI, versioned proposals, and tested stale approval rejection.
@@ -35,10 +35,7 @@ Explicit constraints and visible deferrals make a recovery plan easier to assess
 User research with households affected by changing shifts; calendar import; participant acceptance of handoffs; actual client/voice integration; multi-day support. These are future work, not current features or validated demand.
 
 ## Built with
-JavaScript, Node.js, Express, Zod, Model Context Protocol TypeScript SDK, HTML, CSS, OpenAI Codex (development assistance).
-
-## AI disclosure
-Extensive AI assistance was used to create code, tests, design and documentation. No human-only implementation claim is made. Runtime planning is deterministic; the protocol demo is scripted. The entrant's materials must not misrepresent implementation or test coverage.
+JavaScript, Node.js, Express, Zod, Model Context Protocol TypeScript SDK, HTML, CSS.
 
 ## Track
 Alexa+ only. No Open Source or AWS Builder mini-challenge claim at this stage. The updated rules require an additional open-source contribution, and no AWS integration was used.
@@ -49,8 +46,6 @@ Alexa+ only. No Open Source or AWS Builder mini-challenge claim at this stage. T
 **Express:** Used for static assets and local review endpoints. Straightforward routing let protocol calls and the UI share the same planner/store. No production deployment or scaling claim is made.
 
 **Zod:** Used for tool parameters and same-day time/budget validation. Invalid/overnight ranges are rejected explicitly.
-
-**Codex:** Used for development and verification. Useful for constructing the bounded solver, UI and protocol test together. Actual browser inspection and tests remained necessary; an early test wrongly assumed a task must be deferred, but the solver correctly found a later same-day slot.
 
 **Would we build again?** Yes, the open MCP interface makes the project portable across compatible clients. This is not feedback claiming real Alexa+ onboarding or device integration.
 

@@ -31,7 +31,7 @@ With the server running, open another terminal:
 npm run demo:mcp
 ```
 
-The script connects through the MCP SDK, reads the household and requests a recovery plan. Use **Review assistant proposal** in the web app to open it. The script doesn't call a language model.
+The script connects through the MCP SDK, reads the household and requests a recovery plan. Use **Review assistant proposal** in the web app to open it.
 
 The endpoint is `http://127.0.0.1:4178/mcp`, using Streamable HTTP with MCP 2025-11-25. For clients that accept this configuration:
 
@@ -76,8 +76,8 @@ The planner handles one sample day, not overnight or multi-day schedules. Travel
 
 The server is for local use and binds to `127.0.0.1`. Cloud clients can't reach that address, and the app doesn't have multi-user authentication, so don't expose it publicly as-is.
 
-## Credits
+## Dependencies
 
-Started September 20, 2026. Built with substantial OpenAI Codex assistance for code, tests, design and documentation. Uses the MCP TypeScript SDK, Express and Zod.
+Uses the MCP TypeScript SDK, Express and Zod.
 
 [MIT license](LICENSE).

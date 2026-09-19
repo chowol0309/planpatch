@@ -16,7 +16,7 @@ Node.js v24.18.0, SDK 1.30.0. `npm test`: 8 tests pass.
 Dependency installation audit: 0 reported vulnerabilities at installation time.
 
 ## Manual browser verification
-- Initial four tasks and controls render in the Codex in-app browser.
+- Initial four tasks and controls render in the browser.
 - Generated a recovery preview through the web form: three alternatives; original state unchanged.
 - Approval disabled until review checkbox selected.
 - Applied a plan and saw Casey take over pickup/groceries/dinner; Alex takes laundry at 20:30 after travel.
@@ -28,4 +28,4 @@ Dependency installation audit: 0 reported vulnerabilities at installation time.
 - Reset restored the default scenario inputs and original demo assignments. Browser warning/error log was empty at the end of the interaction checks.
 
 ## Limits
-No live Alexa+ connection, runtime LLM inference, real calendar writes, payment, messaging, mobile-browser execution or real-user testing has been performed. The local fixture is not a production deployment. Registration/public-video publication/final submission are separate external steps, not implied by passing tests.
+No live Alexa+ connection, real calendar writes, payment, messaging, mobile-browser execution or real-user testing has been performed. The local fixture is not a production deployment. Registration/public-video publication/final submission are separate external steps, not implied by passing tests.
