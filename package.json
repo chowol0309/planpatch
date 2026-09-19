@@ -1,0 +1,10 @@
+{
+  "name": "planpatch",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A local, approval-first household schedule recovery MCP server and web demo.",
+  "scripts": { "start": "node src/server.js", "test": "node --test test/*.test.js", "demo:mcp": "node scripts/mcp-demo.js" },
+  "engines": { "node": ">=22" },
+  "dependencies": { "@modelcontextprotocol/sdk": "1.30.0", "express": "^5.1.0", "zod": "^3.25.0" }
+}
