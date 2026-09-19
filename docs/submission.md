@@ -52,9 +52,11 @@ Alexa+ only. No Open Source or AWS Builder mini-challenge claim at this stage. T
 
 **Would we build again?** Yes, the open MCP interface makes the project portable across compatible clients. This is not feedback claiming real Alexa+ onboarding or device integration.
 
+## Public repository
+https://github.com/chowol0309/planpatch — published and verified public, MIT licensed.
+
 ## Submission prerequisites still outstanding
-- Devpost login and hackathon registration.
-- Public repository URL (insert after verified publication).
-- Public English demo video on YouTube or Vimeo. A local walkthrough file is not a submission URL.
+- Hackathon registration is confirmed in Devpost. Starting the project draft is awaiting the entrant's CAPTCHA completion.
+- Public English demo video on YouTube or Vimeo. An 86-second local captured-state montage exists as a draft; it is not a live screen recording or a submission URL. Finish the actual interaction recording before publication.
 - Final accuracy review, then action-time acceptance of the contest rules.
 - Entrant eligibility/conflict-of-interest declarations must be truthful; do not guess undisclosed facts.
