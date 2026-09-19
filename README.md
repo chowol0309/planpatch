@@ -1,84 +1,83 @@
 # PlanPatch
 
-**One changed shift. A workable household day.**
+Replan a household's day when someone's work shift changes.
 
-PlanPatch is an independent prototype for the Alexa+ track of the **Build, Ship, Shape: Amazon Developer Hackathon 2026**. It implements a functioning MCP **2025-11-25 Streamable HTTP** server and a local approval/review web application. It is not an official Amazon product or a live Alexa+ integration.
+Alex has to stay late at work. Someone still needs to pick up the kids, collect groceries and make dinner. PlanPatch works out who can cover each task, accounts for travel time, and shows what has to move or wait until tomorrow.
 
-![PlanPatch local demo](docs/overview.png)
+![PlanPatch](docs/overview.png)
 
-## The problem
+This is a small prototype for the Alexa+ track of the Amazon Developer Hackathon. It has a local web app and an MCP server; it hasn't been connected to Alexa+ yet.
 
-An unexpected work shift can break school pickup, grocery collection and dinner preparation at once. A list of reminders doesn't answer who can actually take over, how they get there, or what should wait until tomorrow.
+## Run it
 
-PlanPatch checks the whole day and proposes a small set of feasible recovery plans. It preserves fixed commitments, checks travel buffers and per-person workload, respects a helper budget, and explicitly defers optional tasks when necessary. If essential work cannot be covered, it says so instead of inventing an available helper.
-
-## Run locally — no API key or subscription
-
-Requires Node.js 22 or newer and npm.
+You'll need Node.js 22+ and npm. No API key is needed.
 
 ```sh
 npm ci
-npm test
 npm start
 ```
 
-Open http://127.0.0.1:4178 . The app binds to loopback only. All people, schedules and dollar amounts are fictional demonstration data. There is no email, calendar, payment or booking integration and no paid service call.
+Open [localhost:4178](http://127.0.0.1:4178).
 
-### Try the web demo
+The demo uses a fictional family and four tasks. Try leaving Alex unavailable from 14:00 to 20:00 with no helper budget. Compare the suggested plans, review the changes, then apply one. The saved schedule survives a refresh; **Undo last applied plan** restores it.
 
-1. Keep Alex unavailable from 14:00–20:00, budget $0, helper disabled.
-2. Choose **Find a recovery plan**. Essential pickup and dinner move to Casey; laundry can move to Alex after work and the travel buffer. Review the actual computed result.
-3. Compare alternatives. Generating a preview leaves the saved schedule unchanged.
-4. Check the review box and choose **Apply this plan to demo**. Refresh the page: the change persists.
-5. Choose **Undo last applied plan** to restore the previous schedule.
-6. Reset, then use 14:00–23:00: the limited household workload requires an explicit deferral. Enable Jo and a $12 budget to compare a paid-helper scenario; this represents a fictional arrangement, not a real booking.
+Change the end time to 23:00 to see which optional task gets deferred. Allow Jo as a helper with a $12 budget to compare another option. That price is sample data, and applying a plan only updates local data.
 
-### Try the actual MCP endpoint
+## MCP
 
-With `npm start` running, use another terminal:
+With the server running, open another terminal:
 
 ```sh
 npm run demo:mcp
 ```
 
-This SDK client performs a real protocol handshake and real `get_household` and `preview_recovery` calls. It is a **scripted protocol demonstration, not an LLM**. In the browser choose **Review assistant proposal** to inspect the saved MCP preview.
+The script connects through the MCP SDK, reads the household and requests a recovery plan. Use **Review assistant proposal** in the web app to open it. The script doesn't call a language model.
 
-For an MCP client that supports local Streamable HTTP, configure:
+The endpoint is `http://127.0.0.1:4178/mcp`, using Streamable HTTP with MCP 2025-11-25. For clients that accept this configuration:
 
 ```json
-{ "mcpServers": { "planpatch": { "url": "http://127.0.0.1:4178/mcp" } } }
+{
+  "mcpServers": {
+    "planpatch": { "url": "http://127.0.0.1:4178/mcp" }
+  }
+}
 ```
 
-Client configuration formats vary. A remote/cloud client cannot reach your loopback address. Do not expose this demonstration server publicly; multi-user authentication is not implemented.
+| Tool | What it does |
+| --- | --- |
+| `get_household` | Reads tasks, availability and the saved schedule |
+| `preview_recovery` | Computes alternatives without changing assignments |
+| `get_recovery_plan` | Retrieves a saved proposal |
 
-Tools:
-- `get_household`: read fictional tasks, availability and the current saved schedule.
-- `preview_recovery`: compute alternatives and persist a proposal; does **not** change assignments.
-- `get_recovery_plan`: inspect a saved proposal and its base revision.
+Applying a plan is handled in the web app after review. Proposals expire after 30 minutes, and an old proposal can't overwrite a newer schedule.
 
-There is deliberately no MCP tool for applying plans. The web UI requires a reviewed selection. The UI mutation routes require a session token and reject cross-origin requests. These are local-demo boundaries, not a claim that another process running as the user is untrusted or isolated.
+## How it works
 
-## Implementation
+The planner searches the sample day's time slots and possible assignees. It checks availability, travel time, workload, fixed appointments and the helper budget. Plans are ranked by deferrals, cost, reassignment and time changes. If an essential task can't be covered, it reports that rather than dropping the task.
 
-- **Planner:** exhaustive search over the small sample day's allowed time slots and assignees. Every candidate checks travel, overlap, fixed commitments, helper permission, budget, essential tasks and workload. Scoring uses explicit heuristic penalties (deferral, cost, reassignment and time changes), not learned preferences.
-- **State:** atomic JSON writes under `.data/`, monotonic revisions, 30-minute preview expiry, stale/replayed approval rejection and one-step undo. Single-process demonstration only.
-- **Protocol:** official `@modelcontextprotocol/sdk` 1.30.0, stateless Streamable HTTP and shared application state. SDK client integration test exercises the actual endpoint.
-- **UI:** dependency-free HTML/CSS/JavaScript, keyboard-accessible controls, responsive layout and live activity panel. No remotely loaded fonts or art.
+- `src/planner.js` — scheduling and scoring
+- `src/store.js` — JSON storage, revisions and undo
+- `src/server.js` — MCP tools and web routes
+- `public/` — plain HTML, CSS and JavaScript
 
-## Scope and honest limitations
+State is stored in `.data/`, which is ignored by Git.
 
-- One sample day and four fixed task definitions. Same-day availability only; overnight/multiday planning is rejected, not supported.
-- No language-model inference, speech recognition, real Alexa+ device test or calendar provider connection has been performed. The valid submission path intended here is the working MCP server, not a claim of deployed Alexa+ availability.
-- Assignees' agreement is simulated. Approving a plan changes local demo data only. A real product would need participant permissions and actual acceptance of handoffs.
-- Travel durations, work limits and helper rates are illustrative constants, not maps, payroll or verified real-world facts.
-- No claim of adoption, revenue, user research or production security.
+## Tests
 
-## Validation
+```sh
+npm test
+```
 
-`npm test` covers feasible and impossible recovery, deferral, travel buffers, helper budget/permission, invalid times, expiry, persistence, stale previews, undo, a real MCP handshake/tool call, origin/Host validation and the UI approval route. See `docs/validation.md` for manual browser checks.
+Tests cover scheduling constraints, impossible plans, helper permissions, persistence, expired or stale proposals, undo, and MCP calls over HTTP. Browser checks are recorded in [docs/validation.md](docs/validation.md).
 
-## Build disclosure and attribution
+## Current limits
 
-Created during the hackathon window, beginning September 20, 2026, with extensive AI assistance from OpenAI Codex. AI produced implementation, tests and draft documentation; no human-only development claim is made. User-facing design and all demonstration data were generated for this project. Dependencies: Model Context Protocol TypeScript SDK, Express and Zod; their licenses remain applicable. No third-party images, music or brand assets are bundled.
+The planner handles one sample day, not overnight or multi-day schedules. Travel times and workload limits are fixed examples. There are no calendar, messaging, payment or booking connections.
 
-License: MIT. See LICENSE.
+The server is for local use and binds to `127.0.0.1`. Cloud clients can't reach that address, and the app doesn't have multi-user authentication, so don't expose it publicly as-is.
+
+## Credits
+
+Started September 20, 2026. Built with substantial OpenAI Codex assistance for code, tests, design and documentation. Uses the MCP TypeScript SDK, Express and Zod.
+
+[MIT license](LICENSE).

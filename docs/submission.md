@@ -1,5 +1,7 @@
 # Devpost submission draft — not submitted
 
+The edited public story is in [devpost-story.md](devpost-story.md). The title, pitch, story, repository link, Alexa+ track and tool feedback have been saved to Devpost draft 1189906. Final submission is still pending.
+
 ## Project name
 PlanPatch
 
@@ -56,7 +58,7 @@ Alexa+ only. No Open Source or AWS Builder mini-challenge claim at this stage. T
 https://github.com/chowol0309/planpatch — published and verified public, MIT licensed.
 
 ## Submission prerequisites still outstanding
-- Hackathon registration is confirmed in Devpost. Starting the project draft is awaiting the entrant's CAPTCHA completion.
+- Hackathon registration and project draft creation are complete. CAPTCHA was completed by the entrant.
 - Public English demo video on YouTube or Vimeo. An 86-second local captured-state montage exists as a draft; it is not a live screen recording or a submission URL. Finish the actual interaction recording before publication.
 - Final accuracy review, then action-time acceptance of the contest rules.
 - Entrant eligibility/conflict-of-interest declarations must be truthful; do not guess undisclosed facts.
